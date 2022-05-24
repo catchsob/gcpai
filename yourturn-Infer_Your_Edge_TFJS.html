@@ -1,0 +1,41 @@
+<!--
+1. 將 AutoML 匯出之 tf-js 目錄置於本檔案相同目錄，或依實際狀況調整 MODEL_NAME
+2. 於本檔案目錄以命令提示字元執行 python -m http.server 啟動 Web Server
+3. 於本機瀏覽器輸入 http://localhost:8000/yourturn-Infer_Your_Edge_TFJS.html 進行測試
+-->
+
+<script src="https://unpkg.com/@tensorflow/tfjs"></script>
+<script src="https://unpkg.com/@tensorflow/tfjs-automl"></script>
+
+<font color="blue"><tt>Image:</tt></font> <input type="file" id='select_img' accept="image/*, capture=camera" onchange="preview()" /><br>
+<img id="preview_img" /><br>
+<div id="prediction"></div>
+
+<script language="javascript">
+    const MODEL_NAME = 'tf-js/model.json';
+    
+    function preview() {
+        if (!window.FileReader) {
+            console.log('no preview functionality supported by your browser!');
+            return;
+        }
+        
+        let reader = new FileReader();
+        reader.onload = function (event) {
+            let img = document.getElementById("preview_img");
+            img.src = event.target.result;
+            predict(img);
+        };
+
+        let file = document.getElementById("select_img").files[0];
+        reader.readAsDataURL(file);
+	}
+    
+    async function predict(img) {
+        const model = await tf.automl.loadImageClassification(MODEL_NAME);
+		const pred = await model.classify(img);
+		console.log(pred);
+		pp = document.getElementById("prediction")
+		pp.innerHTML = JSON.stringify(pred, null, 2);
+	}
+</script>
