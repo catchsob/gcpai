@@ -1,0 +1,16 @@
+[C] sudo apt-get update; sudo apt-get install -y python3-pip
+
+[?] sudo apt-get install -y libopenblas-dev liblapack-dev libjpeg-dev libfreetype6-dev libcanberra-gtk-module
+
+[C] sudo apt-get install libhdf5-dev
+
+[C] sudo pip3 install -U pip setuptools==49.6.0
+
+[C] sudo pip3 install cython pkgconfig protobuf==3.19.4
+
+[C] sudo pip3 install numpy==1.19.5
+
+[C] sudo env H5PY_SETUP_REQUIRES=0 pip3 install -U h5py==3.1.0
+
+[C] sudo pip3 install tensorflow-2.7.0+nv22.1-cp36-cp36m-linux_aarch64.whl
+
