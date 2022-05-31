@@ -4,7 +4,7 @@
 
 [C] sudo apt-get install libhdf5-dev
 
-[C] sudo pip3 install -U pip setuptools==49.6.0
+[C] sudo pip3 install -U setuptools==49.6.0
 
 [C] sudo pip3 install cython pkgconfig protobuf==3.19.4
 
